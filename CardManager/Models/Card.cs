@@ -8,22 +8,23 @@ namespace CardManager.Models
 {
     public class Card
     {
-        // F i e l d s  &  P r o p e r t i e s
-        public int Value { get; private set; }
+        // P r o p e r t i e s
+        public string Rank { get; private set; }
         public string Suit { get; private set; }
 
         // C o n s t r u c t o r s
-        public Card(int value, string suit)
+        public Card(string rank, string suit)
         {
-            Value = value;
+            Rank = rank;
             Suit = suit;
-
         }
 
         // M e t h o d s
         public string ReadCard()
         {
-            return $"{Value} of {Suit}";
+            return $"{Rank} of {Suit}";
         }
+
+        
     }
 }

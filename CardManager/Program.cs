@@ -11,7 +11,7 @@ namespace CardManager
             Console.ReadKey();
             var deck = new Deck();
 
-            Console.WriteLine("A new deck has been created.");
+            Console.WriteLine("Enter 'options' for help");
             string command = "";
 
             while (command != "exit")
@@ -21,28 +21,33 @@ namespace CardManager
                 switch (command)
                 {
                     case "options":
-                        Console.WriteLine("'shuffle' - shuffles the stack");
-                        Console.WriteLine("'view' - displays all cards in the stack");
-                        Console.WriteLine("'add' - add another card to the deck");
-                        Console.WriteLine("'remove' - remove a card from the deck");
-                        Console.WriteLine("'reset' - resets to a new deck");
-                        Console.WriteLine("'exit' - terminates the program");
-                        Console.WriteLine("'peek' - peeks at the top card on the stack");
+                        GetOptions();
                         break;
                     case "shuffle":
 
-                        Console.WriteLine("");
+                        Console.WriteLine("Deck has been randomly shuffled");
                         break;
                     case "view":
-                        PrintDeck(deck);
+                        deck.View();
+                        break;
+                    case "add":
+                        deck.AddCard();
+                        break;
+                    case "reset":
+                        deck.CreateDeck();
                         break;
                 }
             }
         }
 
-        static void PrintDeck(Deck deck)
+        static void GetOptions()
         {
-
+            Console.WriteLine("'shuffle' - shuffles the deck");
+            Console.WriteLine("'view'    - displays all cards in the deck");
+            Console.WriteLine("'add'     - add another card to the deck");
+            Console.WriteLine("'reset'   - resets to a new deck");
+            Console.WriteLine("'exit'    - terminates the program");
+            Console.WriteLine("'peek'    - peeks at the top card on the deck");
         }
     }
 }
