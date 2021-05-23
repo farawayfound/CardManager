@@ -13,7 +13,6 @@ namespace CardManager.Models
         private List<Card> deck;
         private enum Suit { clubs, diamonds, hearts, spades }
         private enum Rank { two = 2, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace }
-        private Random random = new Random();
 
         // C o n s t r u c t o r s
         public Deck()
@@ -74,6 +73,15 @@ namespace CardManager.Models
             }
         }
 
-        
+        public void Shuffle()
+        {
+            Random random = new Random();
+            deck = this.deck.OrderBy(c => random.Next()).ToList();
+        }
+
+        public void Sort()
+        {
+            deck = this.deck.OrderBy(c => c.Suit).ThenBy(r => r.Rank).ToList();
+        }
     }
 }

@@ -20,11 +20,5 @@ namespace CardManager.Models
         }
 
         // M e t h o d s
-        public string ReadCard()
-        {
-            return $"{Rank} of {Suit}";
-        }
-
-        
     }
 }
