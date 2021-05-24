@@ -15,7 +15,7 @@ I built this project as an engineering challenge by a company I'm interviewing f
 ### Built With
 
 * Visual Studio
-** Console Application Project
+* Console Application Project
 
 <!-- GETTING STARTED -->
 ## Getting Started
