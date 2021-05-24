@@ -77,7 +77,7 @@ namespace CardManager.Models
                 }
                 if (adding == true)
                 {
-                    Console.WriteLine("error adding card, please make sure to specify ranks and suit.");
+                    Console.WriteLine("error adding card, please make sure to properly spell rank and suit.");
                 }
             }
         }
