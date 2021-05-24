@@ -19,6 +19,63 @@ namespace CardManager.Models
         }
 
         // M e t h o d s
+
+        public void AddCard()
+        {
+            bool adding = true;
+            while (adding == true)
+            {
+                Console.WriteLine("enter card in the form '[rank] of [suit]'");
+                string card = Console.ReadLine().ToLower();
+                try
+                {
+                    if (Char.IsNumber(card[0]))
+                    {
+                        if (int.Parse(card[0].ToString()) > 0 && int.Parse(card[0].ToString()) < 10)
+                        {
+                            string substr = card.Substring(0, 2);
+                            int r = int.Parse(substr);
+                            if (r < 10)
+                            {
+                                card = card.Remove(0, 1);
+                            }
+                            else
+                            {
+                                card = card.Remove(0, 2);
+                            }
+                            card = card.Insert(0, $"{(Rank)r}");
+                        }
+                    }
+                    if (card.Last() != 's')
+                    {
+                        card = card.Insert(card.Length, "s");
+                    }
+                    foreach (Rank r in Enum.GetValues(typeof(Rank)))
+                    {
+                        foreach (Suit s in Enum.GetValues(typeof(Suit)))
+                        {
+                            if (card == $"{r.ToString()} of {s.ToString()}")
+                            {
+                                Card newCard = new Card(r.ToString(), s.ToString());
+                                deck.Add(newCard);
+                                Console.WriteLine($"One {card} has been added");
+                                adding = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                if (adding == true)
+                {
+                    Console.WriteLine("error adding card, please make sure to properly spell rank and suit.");
+                }
+            }
+        }
+
         public void CreateDeck()
         {
             deck = new List<Card>();
@@ -32,62 +89,10 @@ namespace CardManager.Models
             Console.WriteLine("A fresh deck has been created.");
         }
 
-        public void View()
+        public void Draw()
         {
-            foreach (var card in deck)
-            {
-                Console.WriteLine($"{card.Rank} of {card.Suit}");
-            }
-            Console.WriteLine();
-        }
-
-        public void AddCard()
-        {
-            bool adding = true;
-            while (adding == true)
-            {
-                Console.WriteLine("enter card in the form '[rank] of [suit]'");
-                string card = Console.ReadLine().ToLower();
-                if (Char.IsNumber(card[0]))
-                {
-                    if (int.Parse(card[0].ToString()) > 0 && int.Parse(card[0].ToString()) < 10)
-                    {
-                        string substr = card.Substring(0, 2);
-                        int r = int.Parse(substr);
-                        if (r < 10)
-                        {
-                            card = card.Remove(0, 1);
-                        }
-                        else
-                        {
-                            card = card.Remove(0, 2);
-                        }
-                        card = card.Insert(0, $"{(Rank)r}");
-                    }
-                }
-                if (card.Last() != 's')
-                {
-                    card = card.Insert(card.Length, "s");
-                }
-                foreach (Rank r in Enum.GetValues(typeof(Rank)))
-                {
-                    foreach (Suit s in Enum.GetValues(typeof(Suit)))
-                    {
-                        if (card == $"{r.ToString()} of {s.ToString()}")
-                        {
-                            Card newCard = new Card(r.ToString(), s.ToString());
-                            deck.Add(newCard);
-                            Console.WriteLine($"One {card} has been added");
-                            adding = false;
-                            break;
-                        }
-                    }
-                }
-                if (adding == true)
-                {
-                    Console.WriteLine("error adding card, please make sure to properly spell rank and suit.");
-                }
-            }
+            Console.WriteLine("You drew this card: " + (deck[deck.Count - 1]).Rank + " of " + (deck[deck.Count - 1]).Suit);
+            deck.RemoveAt(deck.Count - 1);
         }
 
         public void Shuffle()
@@ -107,10 +112,13 @@ namespace CardManager.Models
             //deck = this.deck.OrderBy(c => rng.Next()).ToList();
         }
 
-        public void Draw()
+        public void View()
         {
-            Console.WriteLine("You drew this card: " + (deck[deck.Count - 1]).Rank + " of " + (deck[deck.Count - 1]).Suit);
-            deck.RemoveAt(deck.Count - 1);
+            foreach (var card in deck)
+            {
+                Console.WriteLine($"{card.Rank} of {card.Suit}");
+            }
+            Console.WriteLine();
         }
     }
 }
