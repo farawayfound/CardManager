@@ -2,28 +2,20 @@
 <p align="center">
     This is a console application to handle a deck of cards.
     <br />
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/farawayfound/CardManager/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/farawayfound/CardManager/issues">Request Feature</a>
 </p>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
-
+I built this project as an engineering challenge by a company I'm interviewing for. The initial requirements were intentionally vaguely summarized by "design and implement a card shuffler", so I decided to add some more challenging methods and an intuitive UX. 
 
 ### Built With
 
-* []()
-* []()
-* []()
-
-
+* Visual Studio
+** Console Application Project
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -32,20 +24,19 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* Install Visual Studio from Microsoft's website
   ```sh
-  npm install npm@latest -g
+  https://visualstudio.microsoft.com/downloads/
   ```
 
-### Installation
+### Running the Applicataion
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/farawayfound/CardManager.git
    ```
-2. Install NPM packages
+2. Run CardManager.sln file
    ```sh
-   npm install
+   start CardManager/CardManager.sln
    ```
 
