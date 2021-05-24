@@ -31,12 +31,12 @@ To get a local copy up and running follow these simple steps.
 
 ### Running the Applicataion
 
-1. Clone the repo
+1. Download or Clone the repo
    ```sh
    git clone https://github.com/farawayfound/CardManager.git
    ```
 2. Run CardManager.sln file
    ```sh
-   start CardManager/CardManager.sln
+   usually located at Downloads/CardManager-master/CardManager.sln
    ```
 
