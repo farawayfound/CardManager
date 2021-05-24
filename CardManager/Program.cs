@@ -39,7 +39,7 @@ namespace CardManager
                         deck.CreateDeck();
                         break;
                     default:
-                        Console.WriteLine("Enter 'options' for list of commands");
+                        Console.WriteLine("Enter 'h' for list of commands");
                         break;
                 }
             }
