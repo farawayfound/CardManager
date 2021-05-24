@@ -28,10 +28,11 @@ To get a local copy up and running follow these simple steps.
   ```sh
   https://visualstudio.microsoft.com/downloads/
   ```
+* No additional packages are required for Console Apps
 
 ### Running the Applicataion
 
-1. Download or Clone the repo
+1. Download and Extract or Clone the repo
    ```sh
    git clone https://github.com/farawayfound/CardManager.git
    ```
