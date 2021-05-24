@@ -50,10 +50,18 @@ namespace CardManager.Models
                 string card = Console.ReadLine().ToLower();
                 if (Char.IsNumber(card[0]))
                 {
-                    if (int.Parse(card[0].ToString()) > 1 && int.Parse(card[0].ToString()) < 11)
+                    if (int.Parse(card[0].ToString()) > 0 && int.Parse(card[0].ToString()) < 10)
                     {
-                        int r = int.Parse(card[0].ToString());
-                        card = card.Remove(0, 1);
+                        string substr = card.Substring(0, 2);
+                        int r = int.Parse(substr);
+                        if (r < 10)
+                        {
+                            card = card.Remove(0, 1);
+                        }
+                        else
+                        {
+                            card = card.Remove(0, 2);
+                        }
                         card = card.Insert(0, $"{(Rank)r}");
                     }
                 }
