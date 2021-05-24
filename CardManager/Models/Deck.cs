@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace CardManager.Models
@@ -45,31 +46,38 @@ namespace CardManager.Models
             bool adding = true;
             while (adding == true)
             {
-                Console.WriteLine("enter alphabetical rank");
-                string rank = Console.ReadLine().ToLower();
-                Console.WriteLine("enter suit");
-                string suit = Console.ReadLine().ToLower();
-                foreach (Rank r in Enum.GetValues(typeof(Rank)))
+                Console.WriteLine("enter card in the form '[rank] of [suit]'");
+                string card = Console.ReadLine().ToLower();
+                if (Char.IsNumber(card[0]))
                 {
-                    if (rank == r.ToString())
+                    if (int.Parse(card[0].ToString()) > 1 && int.Parse(card[0].ToString()) < 11)
                     {
-                        foreach (Suit s in Enum.GetValues(typeof(Suit)))
-                        {
-                            if (suit == s.ToString())
-                            {
-                                Card newCard = new Card(r.ToString(), s.ToString());
-                                deck.Add(newCard);
-                                Console.WriteLine($"One {rank} of {suit} has been added");
-                                adding = false;
-                                break;
-                            }
-                        }
-                        break;
+                        int r = int.Parse(card[0].ToString());
+                        card = card.Remove(0, 1);
+                        card = card.Insert(0, $"{(Rank)r}");
                     }
                 }
-                if(adding == true)
+                if (card.Last() != 's')
                 {
-                    Console.WriteLine("Spelling error, please make sure to specify alphabetical ranks and suits in plural. E.G. three of diamonds");
+                    card = card.Insert(card.Length, "s");
+                }
+                foreach (Rank r in Enum.GetValues(typeof(Rank)))
+                {
+                    foreach (Suit s in Enum.GetValues(typeof(Suit)))
+                    {
+                        if (card == $"{r.ToString()} of {s.ToString()}")
+                        {
+                            Card newCard = new Card(r.ToString(), s.ToString());
+                            deck.Add(newCard);
+                            Console.WriteLine($"One {card} has been added");
+                            adding = false;
+                            break;
+                        }
+                    }
+                }
+                if (adding == true)
+                {
+                    Console.WriteLine("error adding card, please make sure to specify ranks and suit.");
                 }
             }
         }
@@ -80,7 +88,7 @@ namespace CardManager.Models
 
             //Implementing the Fisher-Yates shuffle method
             int n = deck.Count;
-            while(n > 1)
+            while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
