@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CardManager.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CardManager.Models
 {
@@ -70,18 +67,34 @@ namespace CardManager.Models
                         break;
                     }
                 }
+                if(adding == true)
+                {
+                    Console.WriteLine("Spelling error, please make sure to specify alphabetical ranks and suits in plural. E.G. three of diamonds");
+                }
             }
         }
 
         public void Shuffle()
         {
-            Random random = new Random();
-            deck = this.deck.OrderBy(c => random.Next()).ToList();
+            Random rng = new Random();
+
+            //Implementing the Fisher-Yates shuffle method
+            int n = deck.Count;
+            while(n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                Card crd = deck[k];
+                deck[k] = deck[n];
+                deck[n] = crd;
+            }
+            //deck = this.deck.OrderBy(c => rng.Next()).ToList();
         }
 
-        public void Sort()
+        public void Draw()
         {
-            deck = this.deck.OrderBy(c => c.Suit).ThenBy(r => r.Rank).ToList();
+            Console.WriteLine("You drew this card: " + (deck[deck.Count - 1]).Rank + " of " + (deck[deck.Count - 1]).Suit);
+            deck.RemoveAt(deck.Count - 1);
         }
     }
 }

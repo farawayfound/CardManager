@@ -11,9 +11,7 @@ namespace CardManager
             Console.ReadKey();
             var deck = new Deck();
 
-            Console.WriteLine("Enter 'options' for help");
             string command = "";
-
             while (command != "exit")
             {
                 Console.WriteLine("Enter a command");
@@ -33,12 +31,14 @@ namespace CardManager
                     case "add":
                         deck.AddCard();
                         break;
-                    case "sort":
-                        deck.Sort();
-                        Console.WriteLine("Deck has been sorted in ascending order");
+                    case "draw":
+                        deck.Draw();
                         break;
                     case "reset":
                         deck.CreateDeck();
+                        break;
+                    default:
+                        Console.WriteLine("Enter 'options' for list of commands");
                         break;
                 }
             }
@@ -49,7 +49,7 @@ namespace CardManager
             Console.WriteLine("'shuffle' - shuffles the deck");
             Console.WriteLine("'view'    - displays all cards in the deck");
             Console.WriteLine("'add'     - add another card to the deck");
-            Console.WriteLine("'sort'    - sorts the deck in ascending order");
+            Console.WriteLine("'draw'    - draws the top card out of a deck");
             Console.WriteLine("'reset'   - resets to a new deck");
             Console.WriteLine("'exit'    - terminates the program");
         }
